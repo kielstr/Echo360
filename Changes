@@ -1,0 +1,6 @@
+Revision history for Perl extension Echo360.
+
+0.01  Tue Nov 20 10:21:53 2012
+	- original version; created by h2xs 1.23 with options
+		-AXc -n Echo360
+
