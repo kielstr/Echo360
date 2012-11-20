@@ -131,7 +131,7 @@ sub DESTROY {
 }
 
 
-# Dynamic object relate subs
+# Dynamic object related subs
 sub _obj_builder {
 	my ($self, $name, $xml) = @_;
 	my $obj_name = 'Echo360::'.ucfirst($uri_names{$name});
