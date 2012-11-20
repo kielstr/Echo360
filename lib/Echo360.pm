@@ -61,12 +61,12 @@ sub AUTOLOAD {
 		$_data{refaddr $self}->{_data}{$attr} = $val;
 	}
 
-	if ($resp->code >= 400) {
+	if ($resp and $resp->code >= 400) {
 		$_data{refaddr $self}->{_ERROR} = [parse_error($resp)]; 
 		return 0;
 	}
 
-	($resp->content)  ? $self->_obj_builder($label, XML::Simple->new()->XMLin($resp->content)) : 1;
+	($resp and $resp->content)  ? $self->_obj_builder($label, XML::Simple->new()->XMLin($resp->content)) : 1;
 }
 
 sub parse_error {
@@ -98,7 +98,6 @@ sub _send {
 	my ($self, $method, $uri, $xml) = @_;
 	my $timestamp = time();
 	my $nonce = int rand 99999999;
-	my $realm = $_data{refaddr $self}{'URL'};
 	
 	my $oauth_request = Net::OAuth->request('consumer')->new(
 		consumer_key => $_data{refaddr $self}{'KEY'},
